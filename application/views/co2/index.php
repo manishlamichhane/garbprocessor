@@ -2,7 +2,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Garbage
+        CO2
         <small>Overview</small>
       </h1>
       <!-- <ol class="breadcrumb">
@@ -19,7 +19,7 @@
           <!-- AREA CHART -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Garbage consumption overview</h3>
+              <h3 class="box-title">Garbage-type Co2 Emission Relationship (KgCo2e)</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -39,7 +39,7 @@
           <!-- DONUT CHART -->
           <div class="box box-danger">
             <div class="box-header with-border">
-              <h3 class="box-title">User-Consumption Unit Relationship</h3>
+              <h3 class="box-title">User Co2 Relationship</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -60,7 +60,8 @@
           <!-- BAR CHART -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Location - Garbage Unit relationship</h3>
+              <h3 class="box-title">Location Co2 Relationship</h3>
+
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
@@ -79,9 +80,8 @@
           <!-- LINE CHART -->
           <!-- <div class="box box-success">
             <div class="box-header with-border">
-              
-              <h3 class="box-title">Monthly Consumption :2016</h3>
-            
+              <h3 class="box-title">Location - Garbage Unit relationship</h3>
+
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
@@ -90,10 +90,10 @@
             </div>
             <div class="box-body">
               <div class="chart">
-                <canvas id="lineChart" style="height:230px"></canvas>
+                <canvas id="barChart" style="height:230px"></canvas>
               </div>
             </div>
-            <!-- /.box-body -->
+            <! /.box-body 
           </div> -->
           <!-- /.box -->
 
@@ -113,7 +113,7 @@
      * -------
      * Here we will create a few charts using ChartJS
      */
-//-------------
+
     //- PIE CHART -
     //-------------
     // Get context with jQuery - using jQuery's .get() method.
@@ -124,7 +124,7 @@
 
         foreach($allGarbageVsUnit as $garbUnit): 
 
-          echo "{value:$garbUnit->garbage_unit,
+          echo "{value:$garbUnit->co2,
                 color:'#".substr(md5(rand()), 0, 6)."',
                 highlight:'#".substr(md5(rand()), 0, 6)."',label:'$garbUnit->garbage_type_name'},";
         endforeach;
@@ -157,6 +157,15 @@
     //Create pie or douhnut chart
     // You can switch between pie and douhnut using the method below.
     pieChart.Pie(PieData, pieOptions);
+
+    //-------------
+    //- LINE CHART -
+    //--------------
+    var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
+    var lineChart = new Chart(lineChartCanvas);
+    var lineChartOptions = areaChartOptions;
+    lineChartOptions.datasetFill = false;
+    lineChart.Line(areaChartData, lineChartOptions);
 
     //-------------
     //- PIE CHART -

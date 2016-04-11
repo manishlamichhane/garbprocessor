@@ -13,8 +13,8 @@
 		$data = array(
 
 					'allUserVsUnit' => $this->allUserVsUnit(),
-					'allLocationVsUnit' => $this->allLocationUnit()
-					
+					'allLocationVsUnit' => $this->allLocationUnit(),
+					'allGarbageVsUnit'	=> $this->allGarbageVsUnit()
 			);
 
 		$this->load->view('includes/header');
@@ -26,17 +26,13 @@
 
 	
 
-	public function garbageTypeVsUnit(){
+	public function allGarbageVsUnit(){
 
 
 
-		/*$vars = json_decode(file_get_contents("http://localhost:8000/api/getPastWeekDataAll"));
+		$garbageWithUnit = json_decode(file_get_contents("http://localhost:8000/api/getGarbageUnitAll"));
 
-		foreach($vars as $var){
-
-			echo $var->garbage_type_name."<br>";
-
-		}*/
+		return $garbageWithUnit;
 
 	}
 
@@ -45,7 +41,7 @@
 
 		//calls data of all users and their consumption unit
 
-		$userWithUnit = json_decode(file_get_contents("http://localhost:8000/api/getAllUserUnit"));
+		$userWithUnit = json_decode(file_get_contents("http://localhost:8000/api/getUserUnitAll"));
 
 		return $userWithUnit;
 
