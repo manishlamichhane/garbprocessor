@@ -48,10 +48,32 @@
 	public function allUserVsCarbonUnit(){
 
 		//calls data of all users and their consumption unit
+		#the unit consumption of each particular garbage is multiplied by the carbon factor for each user and all the users are aggregated
 
-		$userWithUnit = json_decode(file_get_contents("http://localhost:8000/api/getUserUnitAll"));
+		$userWithPerGarbageUnit = json_decode(file_get_contents("http://localhost:8000/api/getUserIndividualGarbageHistory"));
 
-		return $userWithUnit;
+
+		echo "<pre>";print_r($userWithPerGarbageUnit);
+
+		$names = array();
+
+		foreach($userWithPerGarbageUnit as $user){
+
+			$names[] = $user->name;
+
+		}
+
+		$names = array_unique($names); //removing duplicates
+
+		$names = array_combine(range(1, count($names)), array_values($names)); //reindexing array
+
+		#making a sorted array where User's name will be key
+
+		print_r($names);
+
+		exit;
+
+		return $userWithPerGarbageUnit;
 
 	}
 
