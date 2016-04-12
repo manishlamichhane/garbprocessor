@@ -53,7 +53,7 @@
 		$userWithPerGarbageUnit = json_decode(file_get_contents("http://localhost:8000/api/getUserIndividualGarbageHistory"));
 
 
-		echo "<pre>";print_r($userWithPerGarbageUnit);
+		// echo "<pre>";print_r($userWithPerGarbageUnit);
 
 		$names = array();
 
@@ -69,9 +69,9 @@
 
 		#making a sorted array where User's name will be key
 
-		print_r($names);
+		/*print_r($names);
 
-		exit;
+		exit;*/
 
 		return $userWithPerGarbageUnit;
 
